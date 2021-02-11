@@ -1,0 +1,30 @@
+<%- include("partials/header") -%>
+<h1 class="delete-heading">DELETE</h1>
+
+ <% posts.forEach(function(post) { %>
+  <div>
+      <% if (post.content.length > 100) { %>
+          <form action="/delete" method="post">
+            <h3><%= post.title %></h3>
+            <p>
+              <%= post.content.substring(0, 100) + "..." %>
+              <a href="/posts/<%= post._id %>">Read More</a>
+            </p>
+            <button type="submit" value="<%= post._id %>" name="deleteButton" class="btn btn-lg btn-danger">Delete</button>
+          </form>
+          <hr />
+      <% }  else { %>
+          <form action="/delete" method="post">
+            <h3><%= post.title %></h3>
+            <p>
+                <%= post.content %>
+            </p>
+            <button type="submit" value="<%= post._id %>" name="deleteButton" class="btn btn-lg btn-danger">Delete</button>
+            </form>
+            <hr />
+        <% } %>
+  </div>
+ <% }); %>
+
+
+<%- include("partials/footer") -%>
